@@ -1,4 +1,4 @@
-# API Tester
+# Board.io
 
 Interactive Board built with Node.js, Express and Socket.io. All users can send and receive changes made to the board. 
 
