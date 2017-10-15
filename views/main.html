@@ -1,0 +1,78 @@
+<div class="main container">
+	<div class="row">
+		<div class="connected col-2"></div>
+		<div class="board col-8"> 
+        Color : <select id="selColor">
+            <option value="black">black</option>
+            <option value="blue" selected="selected">blue</option>
+            <option value="red">red</option>
+            <option value="green">green</option>
+            <option value="yellow">yellow</option>
+            <option value="gray">gray</option>
+        </select>
+		        
+				<canvas id="main-board" style='border:2px solid black's width="684" height="540">
+
+				</canvas>
+			
+		</div>
+		<div class="colors col-2"></div>		
+	</div>
+</div>
+
+<script type="text/javascript">
+	
+var socket = io.connect('http://localhost:3000');
+var mousePressed = false;
+var lastX, lastY;
+var ctx;
+ctx = document.getElementById('main-board').getContext("2d");
+
+    $('#main-board').mousedown(function (e) {
+        mousePressed = true;
+        console.log(e.pageX - $(this).offset().left,  e.pageY - $(this).offset().top);
+        Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
+    });
+
+    $('#main-board').mousemove(function (e) {
+        if (mousePressed) {
+            Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
+        }
+    });
+
+    $('#main-board').mouseup(function (e) {
+        mousePressed = false;
+    });
+	    $('#main-board').mouseleave(function (e) {
+        mousePressed = false;
+    });
+
+
+function Draw(x, y, isDown) {
+    if (isDown) {
+        ctx.beginPath();
+        ctx.strokeStyle = $('#selColor').val();
+        ctx.lineWidth = 1;
+        ctx.lineJoin = "round";
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(x, y);
+        ctx.closePath();
+        ctx.stroke();
+        var changes = {
+    	x: x,
+    	y: y,
+    	lastX: lastX,
+    	lastY: lastY,
+    	color: $('#selColor').val(),
+	};
+    }
+    
+    lastX = x; lastY = y;
+
+    socket.emit('canvas', document.getElementById('main-board').toDataURL('image/png',1));
+    socket.emit('changes', changes);
+    
+}
+	
+
+</script>

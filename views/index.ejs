@@ -1,0 +1,47 @@
+<!doctype html>  
+<html lang="en">  
+    <head>
+		<% include ./layout.ejs %>
+    </head>
+    <body>
+    	<% include ./header.html %>
+        
+        <% include ./main.html %>
+                
+    </body>
+
+<script>  
+    
+ socket.on('connect', function(data) {
+    socket.emit('join', 'A client joined the board!');
+    socket.emit('update', 'Update me!');
+ });
+ 
+
+ socket.on('initiate', function(data){
+ 	var img = new Image;
+	img.onload = function(){
+  		ctx.drawImage(img,0,0); 
+	};
+	img.src = data;
+ 	ctx.drawImage(img, 0, 0);
+ 	console.log(img);
+ });
+ socket.on('draw', function(data){
+ 		ctx.beginPath();
+        ctx.strokeStyle = data['color'];
+        ctx.lineWidth = 1;
+        ctx.lineJoin = "round";
+        ctx.moveTo(data.lastX, data.lastY);
+        ctx.lineTo(data.x, data.y);
+        ctx.closePath();
+        ctx.stroke();
+ });
+
+ 
+
+
+
+
+ 
+</script>
