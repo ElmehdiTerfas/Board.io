@@ -35,14 +35,14 @@ Visit http://localhost:3000 and start drawing. You can change server name in 'bi
 * [Socket.io](https://socket.io/) - Real-time bidirectional event-based communication.
 * [Express](https://expressjs.com/) - Web framework for Node.js.
 * [Ejs](http://www.embeddedjs.com/) - Client-side templating language.
-* [Bootstrap](http://www.materializecss.com) -  HTML, Javascript and CSS library.
+* [Bootstrap](http://getbootstrap.com/) -  HTML, Javascript and CSS library.
 * [Jquery](https://jquery.com) - Javascript library
 
 ## Authors
 
 * **Elmehdi Terfas** - [Repository](https://github.com/ElmehdiTerfas)
 
-See also the list of [contributors](https://github.com/ElmehdiTerfas/Api_Tester/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/ElmehdiTerfas/Board.io/contributors) who participated in this project.
 
 ## License
 
