@@ -19,6 +19,15 @@ Use the command line to install all the dependencies.
 ```
 npm install
 ```
+Step 3:
+
+Cd to 'bin' folder and start the server.
+```
+node www -port 3000
+```
+Step 4:
+
+Visit http://localhost:3000 and start drawing. You can change server name in 'bin/www' and 'views/main.html'. 
 
 ## Built With
 
